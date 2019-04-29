@@ -10,8 +10,12 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "algoliasearch": "^3.32.1",
+    "dotenv": "^7.0.0",
     "ejs": "^2.5.6",
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "firebase": "^5.10.1",
+    "firebase-admin": "^7.3.0"
   },
   "devDependencies": {
     "request": "^2.81.0",
