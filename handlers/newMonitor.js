@@ -1,7 +1,6 @@
 const algoliaMonitors = require("../models/algolia")
 
 module.exports = (req, res) => {
-  console.log(req.body);
   const {
     id,
     field,
