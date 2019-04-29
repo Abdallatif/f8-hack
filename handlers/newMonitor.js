@@ -1,4 +1,4 @@
-const algoliaMonitors = require("../models/algolia")
+const algoliaMonitors = require("../models/algolia").monitors
 
 module.exports = (req, res) => {
   const {
@@ -7,18 +7,26 @@ module.exports = (req, res) => {
     age,
     lat,
     lng,
+    language,
     experience,
     skills,
   } = req.body;
-  const algoliaPromise = algoliaMonitors.addObject({
+  return algoliaMonitors.addObject({
     id,
     field,
     age,
     lat,
     lng,
+    language,
     experience,
     ready: true,
     skills: skills.split(/[.,،]/)
-  }).catch(console.error);
-  return algoliaPromise;
+  })
+    .then(() => {
+      res.json({state: "success"})
+    })
+    .catch(err => {
+      res.json({state: "failed"})
+      console.error(err)
+    });
 }
