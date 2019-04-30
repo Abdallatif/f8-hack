@@ -34,7 +34,7 @@ module.exports = (req, res) => {
                 "Text": "",
                 "Images": [
                     {
-                        "URL": ""
+                        "URL": hit.picture || ""
                     }
                 ],
                 "Buttons": [

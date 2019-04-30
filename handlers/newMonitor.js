@@ -16,13 +16,11 @@ module.exports = (req, res) => {
   return algoliaMonitors.addObject({
     objectID: SenderId,
     field,
-    age,
-    lat,
-    lng,
+    age: +age,
     name,
     picture,
     language,
-    experience,
+    experience: +experience,
     ready: true,
     "_geoloc": { lat: +lat, lng: +lng },
     skills: skills.split(/[.,،]/)
