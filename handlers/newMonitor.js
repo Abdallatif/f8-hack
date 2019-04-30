@@ -23,7 +23,7 @@ module.exports = (req, res) => {
     experience: +experience,
     ready: true,
     "_geoloc": { lat: +lat, lng: +lng },
-    skills: skills.split(/[.,،]/)
+    skills: skills
   })
     .then(() => {
       res.json({ state: "success" })
