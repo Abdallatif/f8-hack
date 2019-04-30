@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
     experience: +experience,
     ready: true,
     "_geoloc": { lat: +lat, lng: +lng },
-    skills: skills
+    skills: skills.split(",")
   })
     .then(() => {
       res.json({ state: "success" })

@@ -30,7 +30,7 @@ module.exports = (req, res) => {
             console.log(algoliaRes);
             const cards = algoliaRes.hits.map(hit => ({
                 "Title": textTruncate(hit.name),
-                "Subtitle": textTruncate(hit.skills),
+                "Subtitle": textTruncate(hit.skills.join(",")),
                 "Text": "",
                 "Images": [
                     {
