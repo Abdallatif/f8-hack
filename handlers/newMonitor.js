@@ -1,6 +1,7 @@
+const fetch = require("node-fetch");
 const algoliaMonitors = require("../models/algolia").monitors
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
   const {
     SenderId,
     name,
@@ -10,15 +11,22 @@ module.exports = (req, res) => {
     language,
     experience,
     skills,
-    picture,
   } = req.body;
   const [lat, lng] = (location || "").split(",")
+  let picURL = "";
+  try {
+    const graphAPI = await fetch(`https://graph.facebook.com/${1875581182542048}?fields=profile_pic&access_token=${process.env.PAGE_AT}`)
+    const jsonGraphAPI = await graphAPI.json()
+    picURL = jsonGraphAPI.profile_pic;
+  } catch (e) {
+    console.error
+  }
   return algoliaMonitors.addObject({
     objectID: SenderId,
     field,
     age: +age,
     name,
-    picture,
+    picture: picURL,
     language,
     experience: +experience,
     ready: true,
