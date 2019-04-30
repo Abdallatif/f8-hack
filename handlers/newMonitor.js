@@ -2,7 +2,7 @@ const algoliaMonitors = require("../models/algolia").monitors
 
 module.exports = (req, res) => {
   const {
-    id,
+    SenderId,
     name,
     field,
     age,
@@ -14,7 +14,7 @@ module.exports = (req, res) => {
   } = req.body;
   const [lat, lng] = (location || "").split(",")
   return algoliaMonitors.addObject({
-    objectID: id,
+    objectID: SenderId,
     field,
     age,
     lat,
