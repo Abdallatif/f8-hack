@@ -45,10 +45,14 @@ module.exports = (req, res) => {
                     }
                 ]
             }))
-            res.json({ state: "success", "success_message": "Here are some of the best monitors", hero_cards: cards })
+            if (cards.length > 0) {
+                res.json({ response: "success", "success_message": "Here are some of the best monitors", "failure_message": "Oops. I couldn't find experts", hero_cards: cards })
+            } else {
+                res.json({ state: "failed" })
+            }
         })
         .catch(err => {
-            res.json({ state: "failed", "failure_message": "Oops. I couldn't find experts", })
+            res.json({ state: "failed" })
             console.error(err)
         });
 }
