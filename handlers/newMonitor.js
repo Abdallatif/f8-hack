@@ -3,30 +3,35 @@ const algoliaMonitors = require("../models/algolia").monitors
 module.exports = (req, res) => {
   const {
     id,
+    name,
     field,
     age,
-    lat,
-    lng,
+    location,
     language,
     experience,
     skills,
+    picture,
   } = req.body;
+  const [lat, lng] = (location || "").split(",")
   return algoliaMonitors.addObject({
-    id,
+    objectID: id,
     field,
     age,
     lat,
     lng,
+    name,
+    picture,
     language,
     experience,
     ready: true,
+    "_geoloc": { lat: +lat, lng: +lng },
     skills: skills.split(/[.,،]/)
   })
     .then(() => {
-      res.json({state: "success"})
+      res.json({ state: "success" })
     })
     .catch(err => {
-      res.json({state: "failed"})
+      res.json({ state: "failed" })
       console.error(err)
     });
 }

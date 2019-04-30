@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require('body-parser')
 const newMonitor = require("./handlers/newMonitor");
+const searchMonitor = require("./handlers/searchMonitor");
 
 const PORT = process.env.PORT || 5000
 
@@ -11,4 +12,7 @@ express()
   .post('/newMonitor', (req, res) => {
     return newMonitor(req, res)
   })
-  .listen(PORT, () => console.log(`Listening on http://localhost:${ PORT }`))
+  .post('/searchMonitor', (req, res) => {
+    return searchMonitor(req, res)
+  })
+  .listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`))
